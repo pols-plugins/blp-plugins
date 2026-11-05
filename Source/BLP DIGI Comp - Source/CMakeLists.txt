@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.22)
+project(BLPDIGIComp VERSION 1.0.0 LANGUAGES C CXX)
+set(JUCE_DIR "" CACHE PATH "Local JUCE source checkout")
+if(JUCE_DIR)
+    add_subdirectory("${JUCE_DIR}" JUCE)
+else()
+    include(FetchContent)
+    FetchContent_Declare(JUCE GIT_REPOSITORY https://github.com/juce-framework/JUCE.git GIT_TAG 8.0.6 GIT_SHALLOW TRUE)
+    FetchContent_MakeAvailable(JUCE)
+endif()
+juce_add_plugin(BLPDIGIComp COMPANY_NAME BLP PLUGIN_MANUFACTURER_CODE Blpe PLUGIN_CODE BdGc
+    FORMATS VST3 PRODUCT_NAME "BLP DIGI Comp" VST3_CATEGORIES Fx Dynamics)
+target_sources(BLPDIGIComp PRIVATE PluginProcessor.cpp PluginEditor.cpp)
+target_compile_features(BLPDIGIComp PRIVATE cxx_std_17)
+target_compile_definitions(BLPDIGIComp PUBLIC JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_VST3_CAN_REPLACE_VST2=0)
+target_link_libraries(BLPDIGIComp PRIVATE juce::juce_audio_processors PUBLIC juce::juce_recommended_config_flags)
+

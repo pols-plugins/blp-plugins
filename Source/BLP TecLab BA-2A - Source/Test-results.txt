@@ -1,0 +1,2 @@
+dry=0.176803 gentle=0.138991 strong=0.0383672 compressed=0.0694899 limit=0.0467187 mix0=0.176803 bypass=0.176803 state=70 PASS=1
+Windows x64 VST3 build PASS. Synthetic stereo signal checks PASS: zero squeeze unity, progressively stronger compression at 35/70/100, Compress/Limit difference, dry mix, bypass, state restoration. In-DAW loading and listening remain unverified.

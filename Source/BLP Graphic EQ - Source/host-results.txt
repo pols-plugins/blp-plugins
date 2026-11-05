@@ -1,0 +1,10 @@
+PASS VST3 audio 1 channel(s), 44100 Hz
+PASS VST3 audio 1 channel(s), 48000 Hz
+PASS VST3 audio 1 channel(s), 88200 Hz
+PASS VST3 audio 1 channel(s), 96000 Hz
+PASS VST3 audio 2 channel(s), 44100 Hz
+PASS VST3 audio 2 channel(s), 48000 Hz
+PASS VST3 audio 2 channel(s), 88200 Hz
+PASS VST3 audio 2 channel(s), 96000 Hz
+PASS VST3 automated seven-band gains, Output and Bypass audio measurements
+PASS automation parameters, project state, .vstpreset disk roundtrip, editor rendering

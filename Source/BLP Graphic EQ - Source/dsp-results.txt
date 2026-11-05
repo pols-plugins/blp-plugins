@@ -1,0 +1,6 @@
+PASS 44100 Hz: flat, 7 +/-15 dB bands, isolation, +/-15 dB output, bypass, stereo, automation stress
+PASS 48000 Hz: flat, 7 +/-15 dB bands, isolation, +/-15 dB output, bypass, stereo, automation stress
+PASS 88200 Hz: flat, 7 +/-15 dB bands, isolation, +/-15 dB output, bypass, stereo, automation stress
+PASS 96000 Hz: flat, 7 +/-15 dB bands, isolation, +/-15 dB output, bypass, stereo, automation stress
+PASS smoothed gain/output/bypass transitions; largest DC step 0.000121008
+Benchmark: 10 seconds of stereo 48 kHz audio processed in 0.0273204 seconds (0.273204% of one core in this test)

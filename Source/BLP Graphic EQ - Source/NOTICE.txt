@@ -1,0 +1,17 @@
+BLP Graphic EQ 2.0.0
+Copyright (c) 2026 Graphic EQ contributors
+
+The original files in Source/, Tests/, CMakeLists.txt and Build-Windows.ps1
+are licensed under the GNU Affero General Public License, version 3 or
+(at your option) any later version. See LICENSE.txt for the complete terms.
+Provided without warranty.
+
+JUCE source revision: 29396c22c93392d6738e021b83196283d6e4d850 (8.0.12).
+JUCE is used under the AGPLv3 option. Its notices and dependency licences
+are preserved in ThirdParty/JUCE. The bundled Steinberg VST3 SDK is MIT
+licensed; see its LICENSE.txt in JUCE/modules/juce_audio_processors_headless/
+format_types/VST3_SDK/.
+
+BLP is the manufacturer label used by this project.
+This product is not affiliated with or endorsed by BandLab, JUCE,
+Steinberg, Image-Line, Cakewalk, or Cockos.

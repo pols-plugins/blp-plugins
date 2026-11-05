@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.22)
+project(GraphicEQ VERSION 2.0.0 LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+set(JUCE_DIR "" CACHE PATH "Path to JUCE source")
+if(NOT JUCE_DIR AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/JUCE/CMakeLists.txt")
+  set(JUCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/JUCE")
+endif()
+if(JUCE_DIR)
+  add_subdirectory("${JUCE_DIR}" juce)
+else()
+  include(FetchContent)
+  FetchContent_Declare(JUCE GIT_REPOSITORY https://github.com/juce-framework/JUCE.git GIT_TAG 8.0.12 GIT_SHALLOW TRUE)
+  FetchContent_MakeAvailable(JUCE)
+endif()
+juce_add_plugin(GraphicEQ
+  COMPANY_NAME "BLP" BUNDLE_ID "audio.blp.graphiceq.b7e2"
+  PLUGIN_MANUFACTURER_CODE Blpa PLUGIN_CODE B7e2
+  FORMATS VST3 PRODUCT_NAME "BLP Graphic EQ"
+  VST3_CATEGORIES Fx EQ
+  IS_SYNTH FALSE NEEDS_MIDI_INPUT FALSE NEEDS_MIDI_OUTPUT FALSE
+  COPY_PLUGIN_AFTER_BUILD FALSE)
+target_sources(GraphicEQ PRIVATE Source/Plugin.cpp Source/Plugin.h Source/EqDSP.h)
+target_compile_definitions(GraphicEQ PUBLIC JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_VST3_CAN_REPLACE_VST2=0)
+target_link_libraries(GraphicEQ PRIVATE juce::juce_audio_processors juce::juce_dsp PUBLIC juce::juce_recommended_config_flags)
+option(GRAPHICEQ_BUILD_TESTS "Build DSP and VST3 integration tests" ON)
+if(GRAPHICEQ_BUILD_TESTS)
+  enable_testing()
+  add_executable(DspTests Tests/DspTests.cpp)
+  add_test(NAME DSP COMMAND DspTests)
+  juce_add_console_app(HostTests PRODUCT_NAME "Graphic EQ Host Tests")
+  target_sources(HostTests PRIVATE Tests/HostTests.cpp)
+  target_compile_definitions(HostTests PRIVATE JUCE_PLUGINHOST_VST3=1 JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0)
+  target_link_libraries(HostTests PRIVATE juce::juce_audio_utils)
+endif()

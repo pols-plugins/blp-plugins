@@ -1,0 +1,1 @@
+Clean Windows x64 Release rebuild completed successfully on 2026-11-03 using the latest GUI-cleanup source. JUCE VST3 module metadata generation succeeded. Included audio test logs are from the prior verification of this same source; the test suite was not rerun for this compilation.
